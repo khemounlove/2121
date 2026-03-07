@@ -1,11 +1,17 @@
-<div align="center">
+# Remix: Mini Accessories Boutique
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+A chic, modern boutique for phone accessories with integrated product management and AI-powered descriptions.
 
-  <h1>Built with AI Studio</h2>
+## ✨ Features
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+- **Product Management**: Add, edit, and delete accessories.
+- **AI Descriptions**: Generate cute descriptions using Gemini AI.
+- **Inventory Tracking**: Real-time stock updates and low-stock alerts.
+- **Sales Analytics**: Track revenue and sales history.
+- **Responsive Design**: Optimized for both mobile and desktop.
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+## 🛠️ Tech Stack
 
-</div>
+- **Frontend**: React 19, Tailwind CSS 4, Lucide Icons, Framer Motion.
+- **Backend**: Express.js, SQLite (better-sqlite3).
+- **AI**: Google Gemini API.
