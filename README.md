@@ -1,4 +1,4 @@
-# Remix: Mini Accessories Boutique
+# Aura Mini Boutique
 
 A chic, modern boutique for phone accessories with integrated product management and AI-powered descriptions.
 
@@ -12,6 +12,6 @@ A chic, modern boutique for phone accessories with integrated product management
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React 19, Tailwind CSS 4, Lucide Icons, Framer Motion.
-- **Backend**: Express.js, SQLite (better-sqlite3).
+- **Frontend**: React 19, Tailwind CSS 4, Lucide Icons, Motion.
+- **Storage**: Browser LocalStorage.
 - **AI**: Google Gemini API.

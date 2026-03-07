@@ -298,7 +298,7 @@ export default function App() {
           <div className="w-10 h-10 pink-gradient rounded-xl flex items-center justify-center text-white shadow-lg shadow-pink-primary/30">
             <ShoppingBag size={20} />
           </div>
-          <h1 className="text-xl font-display font-bold text-pink-dark">Mini Accessories</h1>
+          <h1 className="text-xl font-display font-bold text-pink-dark">Aura Mini Boutique</h1>
         </div>
         <div className="flex items-center gap-2">
         </div>
