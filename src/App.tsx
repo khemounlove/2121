@@ -53,32 +53,7 @@ const STORAGE_KEYS = {
   SETTINGS: 'mini_boutique_settings'
 };
 
-const INITIAL_PRODUCTS: Product[] = [
-  {
-    id: 1,
-    name: "Pink Glitter Case",
-    price: 24.99,
-    description: "A sparkling pink case that adds a touch of magic to your phone.",
-    image: "https://picsum.photos/seed/pinkcase/800/600",
-    stock_quantity: 12
-  },
-  {
-    id: 2,
-    name: "Pearl Charm Strap",
-    price: 15.99,
-    description: "Elegant pearl strap to keep your phone secure and stylish.",
-    image: "https://picsum.photos/seed/pearl/800/600",
-    stock_quantity: 8
-  },
-  {
-    id: 3,
-    name: "Holographic Pop Socket",
-    price: 12.99,
-    description: "Cute holographic grip for better handling and style.",
-    image: "https://picsum.photos/seed/holo/800/600",
-    stock_quantity: 20
-  }
-];
+const INITIAL_PRODUCTS: Product[] = [];
 
 export default function App() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -172,6 +147,16 @@ export default function App() {
     );
     saveProductsToStorage(updatedProducts);
     setTimeout(() => setIsRestocking(false), 800);
+  };
+
+  const handleClearAllData = () => {
+    if (window.confirm('Are you sure you want to clear all products and sales history? This cannot be undone.')) {
+      setProducts([]);
+      setSalesHistory([]);
+      localStorage.removeItem(STORAGE_KEYS.PRODUCTS);
+      localStorage.removeItem(STORAGE_KEYS.SALES);
+      alert('All data has been cleared.');
+    }
   };
 
   const handleAddProduct = (e: React.FormEvent) => {
@@ -756,7 +741,7 @@ export default function App() {
                         products.filter(p => p.stock_quantity === 0).map(p => (
                           <div key={p.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-2xl">
                             <div className="flex items-center gap-3">
-                              <img src={p.image} className="w-10 h-10 rounded-lg object-cover" alt={p.name} />
+                              <img src={p.image} className="w-10 h-10 rounded-lg object-cover" alt={p.name} referrerPolicy="no-referrer" />
                               <div>
                                 <p className="text-sm font-bold text-gray-800 leading-tight">{p.name}</p>
                                 <p className="text-[10px] text-red-500 font-bold uppercase tracking-wider">Sold Out</p>
@@ -772,6 +757,20 @@ export default function App() {
                           </div>
                         ))
                       )}
+                    </div>
+                  </section>
+
+                  {/* Danger Zone */}
+                  <section className="pt-6 border-t border-red-50">
+                    <div className="p-6 rounded-3xl bg-red-50/50 border border-red-100">
+                      <h3 className="text-sm font-bold text-red-600 uppercase tracking-widest mb-2">Danger Zone</h3>
+                      <p className="text-xs text-red-400 mb-4">Permanently delete all store data, including products and sales history.</p>
+                      <button 
+                        onClick={handleClearAllData}
+                        className="px-6 py-3 bg-white text-red-600 text-xs font-bold rounded-2xl shadow-sm border border-red-100 hover:bg-red-50 transition-all active:scale-95"
+                      >
+                        Clear All Store Data
+                      </button>
                     </div>
                   </section>
 
