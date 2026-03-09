@@ -450,6 +450,62 @@ export default function App() {
             ))}
           </div>
         )}
+
+        {/* Newsletter Section */}
+        <section className="mt-20 mb-12">
+          <div className="pink-gradient rounded-[40px] p-8 sm:p-16 text-center text-white relative overflow-hidden shadow-2xl shadow-pink-primary/40">
+            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+              <Sparkles className="absolute top-10 left-10 animate-pulse" size={40} />
+              <Sparkles className="absolute bottom-10 right-10 animate-pulse" size={60} />
+              <div className="absolute top-1/2 left-1/4 w-32 h-32 bg-white rounded-full blur-3xl" />
+            </div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl sm:text-5xl font-display font-bold mb-4 tracking-tight">Join the Aura Club</h2>
+              <p className="text-pink-100 mb-10 max-w-md mx-auto text-sm sm:text-lg">Get exclusive drops, early access to new collections, and 10% off your first order.</p>
+              
+              <form 
+                className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto relative z-10" 
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  alert('Welcome to the Aura Club! ✨');
+                }}
+              >
+                <input 
+                  type="email" 
+                  required
+                  placeholder="your@email.com" 
+                  className="flex-1 px-6 py-4 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 text-white placeholder:text-pink-100 focus:outline-none focus:ring-2 focus:ring-white transition-all text-sm sm:text-base"
+                />
+                <button className="px-8 py-4 bg-white text-pink-dark rounded-2xl font-bold hover:bg-pink-50 transition-all shadow-lg active:scale-95 whitespace-nowrap">
+                  Subscribe Now
+                </button>
+              </form>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="mt-20 pb-12 text-center border-t border-pink-200 pt-12">
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <div className="w-8 h-8 pink-gradient rounded-lg flex items-center justify-center text-white shadow-md">
+              <ShoppingBag size={16} />
+            </div>
+            <span className="text-lg font-display font-bold text-pink-dark">Aura Mini Boutique</span>
+          </div>
+          <p className="text-gray-400 text-xs sm:text-sm max-w-xs mx-auto mb-8">
+            Premium phone accessories for the modern aesthetic. Designed with love and AI.
+          </p>
+          <div className="flex justify-center gap-6 text-pink-dark/60">
+            <span className="text-xs font-bold uppercase tracking-widest cursor-pointer hover:text-pink-dark transition-colors">Instagram</span>
+            <span className="text-xs font-bold uppercase tracking-widest cursor-pointer hover:text-pink-dark transition-colors">TikTok</span>
+            <span className="text-xs font-bold uppercase tracking-widest cursor-pointer hover:text-pink-dark transition-colors">Pinterest</span>
+          </div>
+        </footer>
       </main>
 
       {/* Add Product Modal */}
