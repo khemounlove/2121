@@ -78,6 +78,29 @@ export default function App() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [isRestocking, setIsRestocking] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (e: any) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    };
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+      setDeferredPrompt(null);
+    }
+  };
 
   useEffect(() => {
     // Load data from localStorage
@@ -298,7 +321,7 @@ export default function App() {
           <div className="w-10 h-10 pink-gradient rounded-xl flex items-center justify-center text-white shadow-lg shadow-pink-primary/30">
             <ShoppingBag size={20} />
           </div>
-          <h1 className="text-xl font-display font-bold text-pink-dark">Aura Mini Boutique</h1>
+          <h1 className="text-xl font-display font-bold text-pink-dark">Min Accessories</h1>
         </div>
         <div className="flex items-center gap-2">
         </div>
@@ -773,6 +796,23 @@ export default function App() {
                       </button>
                     </div>
                   </section>
+
+                  {/* Installation Section */}
+                  {deferredPrompt && (
+                    <section className="pt-6 border-t border-pink-50">
+                      <div className="p-6 rounded-3xl bg-pink-50/50 border border-pink-100">
+                        <h3 className="text-sm font-bold text-pink-600 uppercase tracking-widest mb-2">Install App</h3>
+                        <p className="text-xs text-pink-400 mb-4">Install Min Accessories on your device for quick access and a better experience.</p>
+                        <button 
+                          onClick={handleInstallClick}
+                          className="px-6 py-3 bg-white text-pink-600 text-xs font-bold rounded-2xl shadow-sm border border-pink-100 hover:bg-pink-50 transition-all active:scale-95 flex items-center gap-2"
+                        >
+                          <Smartphone size={16} />
+                          Install Now
+                        </button>
+                      </div>
+                    </section>
+                  )}
 
                   {/* Analytics Section */}
                   <section className="space-y-6">

@@ -1,4 +1,4 @@
-# Aura Mini Boutique
+# Min Accessories
 
 A chic, modern boutique for phone accessories with integrated product management and AI-powered descriptions.
 
