@@ -20,14 +20,16 @@ export default defineConfig(({mode}) => {
           theme_color: '#db2777',
           icons: [
             {
-              src: 'https://picsum.photos/seed/minacc/192/192',
+              src: 'https://img.icons8.com/fluency/192/shopping-bag.png',
               sizes: '192x192',
-              type: 'image/png'
+              type: 'image/png',
+              purpose: 'any maskable'
             },
             {
-              src: 'https://picsum.photos/seed/minacc/512/512',
+              src: 'https://img.icons8.com/fluency/512/shopping-bag.png',
               sizes: '512x512',
-              type: 'image/png'
+              type: 'image/png',
+              purpose: 'any maskable'
             }
           ]
         }
