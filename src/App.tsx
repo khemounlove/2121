@@ -37,7 +37,9 @@ interface Sale {
 
 // Lazy initialization of Gemini AI
 const getAI = () => {
-  const apiKey = process.env.GEMINI_API_KEY;
+  // Try to get the key from process.env (defined by Vite) or a fallback
+  const apiKey = typeof process !== 'undefined' && process.env ? process.env.GEMINI_API_KEY : null;
+  
   if (!apiKey) {
     console.warn('GEMINI_API_KEY is missing. AI features will be disabled.');
     return null;
