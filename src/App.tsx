@@ -35,7 +35,15 @@ interface Sale {
   sale_date: string;
 }
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+// Lazy initialization of Gemini AI
+const getAI = () => {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    console.warn('GEMINI_API_KEY is missing. AI features will be disabled.');
+    return null;
+  }
+  return new GoogleGenAI({ apiKey });
+};
 
 const STORAGE_KEYS = {
   PRODUCTS: 'mini_boutique_products',
@@ -272,6 +280,11 @@ export default function App() {
 
   const generateDescription = async () => {
     if (!newName) return;
+    const ai = getAI();
+    if (!ai) {
+      alert('Please configure your GEMINI_API_KEY in Vercel settings to use AI features.');
+      return;
+    }
     setIsGenerating(true);
     try {
       const response = await ai.models.generateContent({
